@@ -70,8 +70,6 @@
                       <div class="leading-3 overflow-y-auto font-body font-medium list-group">
                       <a href="{{ url('/home/libraries') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled">Net Library</a>
                       <br>
-                      <a href="{{ url('/home/settings') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled">Settings</a>
-                      <br>
                       <a href="{{ url('/home/about') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled">About</a>
                   </div>
                   </div>
@@ -96,8 +94,6 @@
                 <div class="py-4 pl-10">
                     <div class="leading-3 overflow-y-auto font-body font-medium list-group">
                     <a href="{{ url('/home/libraries') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled bg-slate-200 rounded-s-lg pl-5">Net Library</a>
-                    <br>
-                    <a href="{{ url('/home/settings') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled">Settings</a>
                     <br>
                     <a href="{{ url('/home/about') }}" class="text-lg text-slate-700 hover:text-slate-600 navbar-text list-group-item-unstyled">About</a>
                 </div>

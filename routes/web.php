@@ -41,9 +41,6 @@ Route::get('/home/edit/library', function () {
 Route::get('/home/libraries', function () {
     return view('netlib');
 });
-Route::get('/home/settings', function () {
-    return view('settings');
-});
 Route::get('/home/about', function () {
     return view('about');
 });
