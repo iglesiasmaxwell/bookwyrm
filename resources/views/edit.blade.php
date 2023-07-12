@@ -29,6 +29,14 @@
                 border-radius: 10px!important;
                }
             }
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
         </style>
 
         <script src="https://cdn.tailwindcss.com"></script>
@@ -42,6 +50,19 @@
                     canvas.classList.toggle('right-0')
                 }
                 }
+
+            const Check = (id1, id2) =>{
+                id1 = document.getElementById(id1);
+                id2 = document.getElementById(id2);
+                    id1.classList.remove('hidden')
+                    id2.classList.remove('hidden')
+            }
+            const unCheck = (id1, id2) =>{
+                id1 = document.getElementById(id1);
+                id2 = document.getElementById(id2);
+                    id1.classList.add('hidden')
+                    id2.classList.add('hidden')
+            }
         </script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -138,8 +159,13 @@
                                     <input class="w-full bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 h-8 text-base rounded-3 mb-2" type="text" id="pageInput" name="pages" autocomplete="off" placeholder="{{ $book_info->pages }}" value="{{ $book_info->pages }}">
                                     <label class="text-lg font-medium" for="yearInput">Year</label>
                                     <input class="w-full bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 h-8 text-base rounded-3 mb-2" type="text" id="yearInput" name="year" autocomplete="off" placeholder="{{ $book_info->year }}" value="{{ $book_info->year }}">
-                                    <label class="text-lg font-medium" for="ratingInput">Rating <span class="text-xs">(1-5)</span></label>
+                                    @if ($book_info->condition==='completed')
+                                    <label class="text-lg font-medium" for="ratingInput" id="ratingLabel">Rating <span class="text-xs">(1-5)</span></label>
                                     <input class="w-full bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 h-8 text-base rounded-3 mb-2" type="number" id="ratingInput" name="rating" autocomplete="off" min="1" max="5" placeholder="{{ $book_info->rating }}" value="{{ $book_info->rating }}">
+                                    @else
+                                    <label class="text-lg font-medium hidden" for="ratingInput" id="ratingLabel">Rating <span class="text-xs">(1-5)</span></label>
+                                    <input class="w-full bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 h-8 text-base rounded-3 mb-2 hidden" type="number" id="ratingInput" name="rating" autocomplete="off" min="1" max="5" placeholder="{{ $book_info->rating }}" value="{{ $book_info->rating }}">
+                                    @endif
                                     <label class="text-lg font-medium">Status <span class="text-xs">(required)</span></label>
                                     <div class="row g-0 text-center mb-3">
                                         @if ($book_info->condition==='reading')
@@ -147,19 +173,19 @@
                                         @else
                                         <input class="btn-check" type="radio" id="reading" value="reading" name="condition" autocomplete="off">
                                         @endif
-                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-start-3 rounded-end-0 mb-2 btn status-btn" for="reading">Reading</label>
+                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-start-3 rounded-end-0 mb-2 btn status-btn" for="reading" onclick="unCheck('ratingLabel', 'ratingInput')">Reading</label>
                                         @if ($book_info->condition==='planning')
                                         <input class="btn-check" type="radio" id="planning" value="planning" name="condition" autocomplete="off" checked>
                                         @else
                                         <input class="btn-check" type="radio" id="planning" value="planning" name="condition" autocomplete="off">
                                         @endif
-                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-0 mb-2 btn status-btn" for="planning">Planning</label>
+                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-0 mb-2 btn status-btn" for="planning" onclick="unCheck('ratingLabel', 'ratingInput')">Planning</label>
                                         @if ($book_info->condition==='completed')
                                         <input class="btn-check" type="radio" id="completed" value="completed" name="condition" autocomplete="off" checked>
                                         @else
                                         <input class="btn-check" type="radio" id="completed" value="completed" name="condition" autocomplete="off">
                                         @endif
-                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-end-3 rounded-start-0 mb-2 btn status-btn" for="completed">Completed</label>
+                                        <label class="text-lg text-slate-700 font-medium w-full sm:w-1/3 bg-slate-200 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-end-3 rounded-start-0 mb-2 btn status-btn" for="completed" onclick="Check('ratingLabel', 'ratingInput')">Completed</label>
                                     </div>
                                     <div class="row g-0 text-center pt-1">
                                         <a href="{{ url('/home') }}" class="text-lg font-medium w-1/2 bg-slate-200 hover:bg-slate-100/75 outline-[0.5px] outline-slate-400/60 px-2 py-1.5 text-base rounded-start-3 mb-2 border-e border-slate-400/25">Cancel</a>

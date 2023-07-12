@@ -64,7 +64,7 @@ class BookController extends Controller
             'author' => ['required', 'max:100'],
             'pages' => ['max:11'],
             'year' => ['max:4'],
-            'rating' => ['max:1'],
+            'rating' => ['exclude_unless:condition,completed', 'max:1'],
             'condition'=>['required'],
         ]);
 
