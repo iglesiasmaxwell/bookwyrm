@@ -1,3 +1,3 @@
 ## bookwyrm
 
-Web-based book tracker application
+A simple Web-Based Book Tracker application
